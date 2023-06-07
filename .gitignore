@@ -1,5 +1,7 @@
+ckpts
+data
 # benchmark logs
-#benchmark_logs/
+benchmark_logs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
