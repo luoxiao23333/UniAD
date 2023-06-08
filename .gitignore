@@ -2,7 +2,7 @@ ckpts
 data
 # benchmark logs
 benchmark_logs/
-*email.yaml*
+*.yaml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
