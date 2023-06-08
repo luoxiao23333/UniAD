@@ -1,55 +1,122 @@
-(base) hyou37@eic-gt-gpu1:~/xluo/UniAD$ conda activate uniad
-(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ nvidia-smi
-Wed Jun  7 02:47:21 2023
-+---------------------------------------------------------------------------------------+
-| NVIDIA-SMI 530.30.02              Driver Version: 530.30.02    CUDA Version: 12.1     |
-|-----------------------------------------+----------------------+----------------------+
-| GPU  Name                  Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp  Perf            Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-|                                         |                      |               MIG M. |
-|=========================================+======================+======================|
-|   0  NVIDIA RTX A5000                On | 00000000:01:00.0 Off |                    0 |
-| 30%   29C    P8               23W / 230W|      1MiB / 23028MiB |      0%      Default |
-|                                         |                      |                  N/A |
-+-----------------------------------------+----------------------+----------------------+
-|   1  NVIDIA RTX A5000                On | 00000000:23:00.0 Off |                    0 |
-| 30%   29C    P8               22W / 230W|      1MiB / 23028MiB |      0%      Default |
-|                                         |                      |                  N/A |
-+-----------------------------------------+----------------------+----------------------+
-|   2  NVIDIA RTX A5000                On | 00000000:41:00.0 Off |                    0 |
-| 30%   30C    P8               25W / 230W|      1MiB / 23028MiB |      0%      Default |
-|                                         |                      |                  N/A |
-+-----------------------------------------+----------------------+----------------------+
-|   3  NVIDIA RTX A5000                On | 00000000:61:00.0 Off |                    0 |
-| 30%   30C    P8               28W / 230W|      1MiB / 23028MiB |      0%      Default |
-|                                         |                      |                  N/A |
-+-----------------------------------------+----------------------+----------------------+
-|   4  NVIDIA RTX A5000                On | 00000000:81:00.0 Off |                    0 |
-| 30%   30C    P8               29W / 230W|      1MiB / 23028MiB |      0%      Default |
-|                                         |                      |                  N/A |
-+-----------------------------------------+----------------------+----------------------+
-|   5  NVIDIA RTX A5000                On | 00000000:A1:00.0 Off |                    0 |
-| 30%   29C    P8               24W / 230W|      1MiB / 23028MiB |      0%      Default |
-|                                         |                      |                  N/A |
-+-----------------------------------------+----------------------+----------------------+
-|   6  NVIDIA RTX A5000                On | 00000000:C1:00.0 Off |                    0 |
-| 30%   27C    P8               19W / 230W|      1MiB / 23028MiB |      0%      Default |
-|                                         |                      |                  N/A |
-+-----------------------------------------+----------------------+----------------------+
-|   7  NVIDIA RTX A5000                On | 00000000:E1:00.0 Off |                    0 |
-| 30%   27C    P8               18W / 230W|      1MiB / 23028MiB |      0%      Default |
-|                                         |                      |                  N/A |
-+-----------------------------------------+----------------------+----------------------+
+Done loading in 36.315 seconds.
+======
+Reverse indexing ...
+Done reverse indexing in 8.1 seconds.
+======
+load checkpoint from local path: ./ckpts/uniad_base_e2e.pth
+2023-06-08 03:51:19,070 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.0.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,074 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.1.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,078 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.2.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,081 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.3.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,085 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.4.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,088 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.5.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,091 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.6.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,095 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.7.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,098 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.8.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,102 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.9.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,105 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.10.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,108 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.11.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,112 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.12.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,115 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.13.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,119 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.14.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,122 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.15.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,125 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.16.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,129 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.17.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,132 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.18.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,136 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.19.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,139 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.20.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,142 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.21.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,146 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.22.conv2 i
+s upgraded to version 2.
+2023-06-08 03:51:19,150 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.0.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,155 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.1.conv2 is
+ upgraded to version 2.
+2023-06-08 03:51:19,158 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.2.conv2 is
+ upgraded to version 2.
+[                                                  ] 0/5, elapsed: 0s, ETA:
 
-+---------------------------------------------------------------------------------------+
-| Processes:                                                                            |
-|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
-|        ID   ID                                                             Usage      |
-|=======================================================================================|
-|  No running processes found                                                           |
-+---------------------------------------------------------------------------------------+
-(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_e2e/base_e2e.py ./ckpts/un
-iad_base_e2e.pth  1 0
+from 0 to 5 in rank 0, batch0
+
+
+[>>>>>>>>>>>>>>                     ] 2/5, 0.6 task/s, elapsed: 3s, ETA:     5s/nethome/hyou37
+/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:178: FutureWarni
+ng: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torch.distributed.run.
+Note that --use_env is set by default in torch.distributed.run.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See
+https://pytorch.org/docs/stable/distributed.html#launch-utility for
+further instructions
+
+  warnings.warn(
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: -11) local_rank: 0 (pid:
+ 334799) of binary: /nethome/hyou37/anaconda3/envs/uniad/bin/python
+Traceback (most recent call last):
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 194, in _run_module
+_as_main
+    return _run_code(code, main_globals, None,
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 193, in <module>
+    main()
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 189, in main
+    launch(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 174, in launch
+    run(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/run
+.py", line 689, in run
+    elastic_launch(
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 116, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 244, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+***************************************************
+               ./tools/test.py FAILED
+===================================================
+Root Cause:
+[0]:
+  time: 2023-06-08_03:51:30
+  rank: 0 (local_rank: 0)
+  exitcode: -11 (pid: 334799)
+  error_file: <N/A>
+  msg: "Signal 11 (SIGSEGV) received by PID 334799"
+===================================================
+Other Failures:
+  <NO_OTHER_FAILURES>
+***************************************************
+
+^C
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0
 projects.mmdet3d_plugin
 ======
 Loading NuScenes tables for version v1.0-trainval...
@@ -66,32 +133,72 @@ Loading NuScenes tables for version v1.0-trainval...
 2631083 sample_data,
 1166187 sample_annotation,
 4 map,
-Done loading in 36.342 seconds.
+Done loading in 35.964 seconds.
 ======
 Reverse indexing ...
 Done reverse indexing in 8.2 seconds.
 ======
 load checkpoint from local path: ./ckpts/uniad_base_e2e.pth
-Traceback (most recent call last):
-  File "./tools/test.py", line 268, in <module>
-    main()
-  File "./tools/test.py", line 209, in main
-    checkpoint = load_checkpoint(model, args.checkpoint, map_location='cpu')
-  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/mmcv/runner/checkpoint.py", line 531, in load_c
-heckpoint
-    checkpoint = _load_checkpoint(filename, map_location, logger)
-  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/mmcv/runner/checkpoint.py", line 470, in _load_
-checkpoint
-    return CheckpointLoader.load_checkpoint(filename, map_location, logger)
-  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/mmcv/runner/checkpoint.py", line 249, in load_c
-heckpoint
-    return checkpoint_loader(filename, map_location)
-  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/mmcv/runner/checkpoint.py", line 265, in load_f
-rom_local
-    raise IOError(f'{filename} is not a checkpoint file')
-OSError: ./ckpts/uniad_base_e2e.pth is not a checkpoint file
-/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:178: FutureWarning: The mod
-ule torch.distributed.launch is deprecated
+2023-06-08 03:53:44,820 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.0.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,825 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.1.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,829 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.2.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,832 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.3.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,836 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.4.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,839 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.5.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,843 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.6.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,846 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.7.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,850 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.8.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,853 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.9.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,857 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.10.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,860 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.11.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,864 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.12.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,868 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.13.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,871 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.14.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,875 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.15.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,878 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.16.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,882 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.17.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,885 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.18.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,889 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.19.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,892 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.20.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,896 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.21.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,899 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.22.conv2 i
+s upgraded to version 2.
+2023-06-08 03:53:44,903 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.0.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,908 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.1.conv2 is
+ upgraded to version 2.
+2023-06-08 03:53:44,912 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.2.conv2 is
+ upgraded to version 2.
+[                                                  ] 0/5, elapsed: 0s, ETA:
+
+from 0 to 5 in rank 0, batch0
+
+
+[>>>>>>>>>>>>>>                     ] 2/5, 0.6 task/s, elapsed: 3s, ETA:     5s/nethome/hyou37
+/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:178: FutureWarni
+ng: The module torch.distributed.launch is deprecated
 and will be removed in future. Use torch.distributed.run.
 Note that --use_env is set by default in torch.distributed.run.
 If your script expects `--local_rank` argument to be set, please
@@ -100,28 +207,333 @@ https://pytorch.org/docs/stable/distributed.html#launch-utility for
 further instructions
 
   warnings.warn(
-ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 147458) of binary: /nethome
-/hyou37/anaconda3/envs/uniad/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: -11) local_rank: 0 (pid:
+ 336520) of binary: /nethome/hyou37/anaconda3/envs/uniad/bin/python
 Traceback (most recent call last):
-  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 194, in _run_module
+_as_main
     return _run_code(code, main_globals, None,
   File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 87, in _run_code
     exec(code, run_globals)
-  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py", line 193, in <mod
-ule>
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 193, in <module>
     main()
-  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py", line 189, in main
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 189, in main
     launch(args)
-  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py", line 174, in laun
-ch
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 174, in launch
     run(args)
-  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/run.py", line 689, in run
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/run
+.py", line 689, in run
     elastic_launch(
-  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 116, i
-n __call__
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 116, in __call__
     return launch_agent(self._config, self._entrypoint, list(args))
-  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 244, i
-n launch_agent
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 244, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+***************************************************
+               ./tools/test.py FAILED
+===================================================
+Root Cause:
+[0]:
+  time: 2023-06-08_03:53:56
+  rank: 0 (local_rank: 0)
+  exitcode: -11 (pid: 336520)
+  error_file: <N/A>
+  msg: "Signal 11 (SIGSEGV) received by PID 336520"
+===================================================
+Other Failures:
+  <NO_OTHER_FAILURES>
+***************************************************
+
+^C
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0
+\projects.mmdet3d_plugin
+======
+Loading NuScenes tables for version v1.0-trainval...
+23 category,
+8 attribute,
+4 visibility,
+64386 instance,
+12 sensor,
+10200 calibrated_sensor,
+2631083 ego_pose,
+68 log,
+850 scene,
+34149 sample,
+2631083 sample_data,
+1166187 sample_annotation,
+4 map,
+Done loading in 35.775 seconds.
+======
+Reverse indexing ...
+Done reverse indexing in 8.1 seconds.
+======
+load checkpoint from local path: ./ckpts/uniad_base_e2e.pth
+2023-06-08 03:55:30,459 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.0.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,465 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.1.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,469 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.2.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,473 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.3.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,477 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.4.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,480 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.5.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,484 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.6.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,488 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.7.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,492 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.8.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,496 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.9.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,500 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.10.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,504 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.11.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,508 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.12.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,512 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.13.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,516 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.14.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,520 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.15.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,524 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.16.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,528 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.17.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,532 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.18.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,536 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.19.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,539 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.20.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,543 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.21.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,547 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.22.conv2 i
+s upgraded to version 2.
+2023-06-08 03:55:30,552 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.0.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,558 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.1.conv2 is
+ upgraded to version 2.
+2023-06-08 03:55:30,562 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.2.conv2 is
+ upgraded to version 2.
+[                                                  ] 0/5, elapsed: 0s, ETA:
+
+from 0 to 5 in rank 0, batch0
+
+
+[>>>>>>>>>>>>>>                     ] 2/5, 0.6 task/s, elapsed: 3s, ETA:     5s/nethome/hyou37
+/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:178: FutureWarni
+ng: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torch.distributed.run.
+Note that --use_env is set by default in torch.distributed.run.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See
+https://pytorch.org/docs/stable/distributed.html#launch-utility for
+further instructions
+
+  warnings.warn(
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: -11) local_rank: 0 (pid:
+ 337913) of binary: /nethome/hyou37/anaconda3/envs/uniad/bin/python
+Traceback (most recent call last):
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 194, in _run_module
+_as_main
+    return _run_code(code, main_globals, None,
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 193, in <module>
+    main()
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 189, in main
+    launch(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 174, in launch
+    run(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/run
+.py", line 689, in run
+    elastic_launch(
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 116, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 244, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+***************************************************
+               ./tools/test.py FAILED
+===================================================
+Root Cause:
+[0]:
+  time: 2023-06-08_03:55:42
+  rank: 0 (local_rank: 0)
+  exitcode: -11 (pid: 337913)
+  error_file: <N/A>
+  msg: "Signal 11 (SIGSEGV) received by PID 337913"
+===================================================
+Other Failures:
+  <NO_OTHER_FAILURES>
+***************************************************
+
+^C
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ echo $CUDA_VISIBLE_DEVICES
+
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0
+projects.mmdet3d_plugin
+======
+Loading NuScenes tables for version v1.0-trainval...
+23 category,
+8 attribute,
+4 visibility,
+64386 instance,
+12 sensor,
+10200 calibrated_sensor,
+2631083 ego_pose,
+68 log,
+850 scene,
+34149 sample,
+2631083 sample_data,
+1166187 sample_annotation,
+4 map,
+Done loading in 36.174 seconds.
+======
+Reverse indexing ...
+Done reverse indexing in 8.0 seconds.
+======
+load checkpoint from local path: ./ckpts/uniad_base_e2e.pth
+2023-06-08 03:57:56,957 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.0.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:56,962 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.1.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:56,966 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.2.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:56,970 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.3.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:56,973 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.4.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:56,977 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.5.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:56,981 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.6.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:56,984 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.7.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:56,988 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.8.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:56,992 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.9.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:56,995 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.10.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:56,999 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.11.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,003 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.12.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,006 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.13.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,010 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.14.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,014 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.15.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,017 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.16.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,021 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.17.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,025 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.18.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,028 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.19.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,032 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.20.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,035 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.21.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,039 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.22.conv2 i
+s upgraded to version 2.
+2023-06-08 03:57:57,043 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.0.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:57,048 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.1.conv2 is
+ upgraded to version 2.
+2023-06-08 03:57:57,052 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.2.conv2 is
+ upgraded to version 2.
+[                                                  ] 0/5, elapsed: 0s, ETA:
+
+from 0 to 5 in rank 0, batch0
+
+
+[>>>>>>>>>>>>>>>>>>>>>>>>>>>       ] 4/5, 0.4 task/s, elapsed: 11s, ETA:     3s[W CPUAllocator
+.cpp:314] Memory block of unknown size was allocated before the profiling started, profiler re
+sults will not include the deallocation event
+[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 5/5, 0.4 task/s, elapsed: 12s, ETA:     0s
+
+rank 0 batch 0 done!
+
+
+(batch_size: 1): 1.78 FPS, max mem: 2910.16 MB, batch: 0, rank: 0
+Profile Done
+/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:1
+78: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torch.distributed.run.
+Note that --use_env is set by default in torch.distributed.run.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See
+https://pytorch.org/docs/stable/distributed.html#launch-utility for
+further instructions
+
+  warnings.warn(
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0^C
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0
+Traceback (most recent call last):
+  File "./tools/test.py", line 19, in <module>
+    from projects.mmdet3d_plugin.uniad.apis.test import custom_multi_gpu_test
+  File "/nethome/hyou37/xluo/UniAD/projects/mmdet3d_plugin/uniad/apis/test.py", line 49, in <m
+odule>
+    import email_task_result
+ModuleNotFoundError: No module named 'email_task_result'
+/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:1
+78: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torch.distributed.run.
+Note that --use_env is set by default in torch.distributed.run.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See
+https://pytorch.org/docs/stable/distributed.html#launch-utility for
+further instructions
+
+  warnings.warn(
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 3
+45610) of binary: /nethome/hyou37/anaconda3/envs/uniad/bin/python
+Traceback (most recent call last):
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 194, in _run_module
+_as_main
+    return _run_code(code, main_globals, None,
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 193, in <module>
+    main()
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 189, in main
+    launch(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 174, in launch
+    run(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/run
+.py", line 689, in run
+    elastic_launch(
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 116, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 244, in launch_agent
     raise ChildFailedError(
 torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
 ***************************************
@@ -129,9 +541,9 @@ torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
 =======================================
 Root Cause:
 [0]:
-  time: 2023-06-07_02:49:06
+  time: 2023-06-08_05:01:48
   rank: 0 (local_rank: 0)
-  exitcode: 1 (pid: 147458)
+  exitcode: 1 (pid: 345610)
   error_file: <N/A>
   msg: "Process failed with exitcode 1"
 =======================================
@@ -139,5 +551,457 @@ Other Failures:
   <NO_OTHER_FAILURES>
 ***************************************
 
-(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0
+Traceback (most recent call last):
+  File "./tools/test.py", line 19, in <module>
+    from projects.mmdet3d_plugin.uniad.apis.test import custom_multi_gpu_test
+  File "/nethome/hyou37/xluo/UniAD/projects/mmdet3d_plugin/uniad/apis/test.py", line 49, in <m
+odule>
+    from UniAD import email_task_result
+ModuleNotFoundError: No module named 'UniAD'
+/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:1
+78: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torch.distributed.run.
+Note that --use_env is set by default in torch.distributed.run.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See
+https://pytorch.org/docs/stable/distributed.html#launch-utility for
+further instructions
 
+  warnings.warn(
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 3
+45879) of binary: /nethome/hyou37/anaconda3/envs/uniad/bin/python
+Traceback (most recent call last):
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 194, in _run_module
+_as_main
+    return _run_code(code, main_globals, None,
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 193, in <module>
+    main()
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 189, in main
+    launch(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 174, in launch
+    run(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/run
+.py", line 689, in run
+    elastic_launch(
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 116, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 244, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+***************************************
+         ./tools/test.py FAILED
+=======================================
+Root Cause:
+[0]:
+  time: 2023-06-08_05:04:31
+  rank: 0 (local_rank: 0)
+  exitcode: 1 (pid: 345879)
+  error_file: <N/A>
+  msg: "Process failed with exitcode 1"
+=======================================
+Other Failures:
+  <NO_OTHER_FAILURES>
+***************************************
+
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0
+Traceback (most recent call last):
+  File "./tools/test.py", line 19, in <module>
+    from projects.mmdet3d_plugin.uniad.apis.test import custom_multi_gpu_test
+  File "/nethome/hyou37/xluo/UniAD/projects/mmdet3d_plugin/uniad/apis/test.py", line 51, in <m
+odule>
+    import email_task_result
+  File "/nethome/hyou37/xluo/UniAD/email_task_result.py", line 66, in <module>
+    time.sleep(2)
+  File "/nethome/hyou37/xluo/UniAD/email_task_result.py", line 20, in __exit__
+    print("email sent, latency is {}".format(latency))
+UnicodeEncodeError: 'latin-1' codec can't encode character '\u79d2' in position 24: ordinal no
+t in range(256)
+/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:1
+78: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torch.distributed.run.
+Note that --use_env is set by default in torch.distributed.run.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See
+https://pytorch.org/docs/stable/distributed.html#launch-utility for
+further instructions
+
+  warnings.warn(
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 3
+46359) of binary: /nethome/hyou37/anaconda3/envs/uniad/bin/python
+Traceback (most recent call last):
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 194, in _run_module
+_as_main
+    return _run_code(code, main_globals, None,
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 193, in <module>
+    main()
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 189, in main
+    launch(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 174, in launch
+    run(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/run
+.py", line 689, in run
+    elastic_launch(
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 116, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 244, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+***************************************
+         ./tools/test.py FAILED
+=======================================
+Root Cause:
+[0]:
+  time: 2023-06-08_05:11:39
+  rank: 0 (local_rank: 0)
+  exitcode: 1 (pid: 346359)
+  error_file: <N/A>
+  msg: "Process failed with exitcode 1"
+=======================================
+Other Failures:
+  <NO_OTHER_FAILURES>
+***************************************
+
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0
+Traceback (most recent call last):
+  File "./tools/test.py", line 19, in <module>
+    from projects.mmdet3d_plugin.uniad.apis.test import custom_multi_gpu_test
+  File "/nethome/hyou37/xluo/UniAD/projects/mmdet3d_plugin/uniad/apis/test.py", line 52, in <m
+odule>
+    @email_task_result(task_name='UniAD Profiling')
+TypeError: 'module' object is not callable
+/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:1
+78: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torch.distributed.run.
+Note that --use_env is set by default in torch.distributed.run.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See
+https://pytorch.org/docs/stable/distributed.html#launch-utility for
+further instructions
+
+  warnings.warn(
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 3
+46730) of binary: /nethome/hyou37/anaconda3/envs/uniad/bin/python
+Traceback (most recent call last):
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 194, in _run_module
+_as_main
+    return _run_code(code, main_globals, None,
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 193, in <module>
+    main()
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 189, in main
+    launch(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 174, in launch
+    run(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/run
+.py", line 689, in run
+    elastic_launch(
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 116, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 244, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+***************************************
+         ./tools/test.py FAILED
+=======================================
+Root Cause:
+[0]:
+  time: 2023-06-08_05:15:01
+  rank: 0 (local_rank: 0)
+  exitcode: 1 (pid: 346730)
+  error_file: <N/A>
+  msg: "Process failed with exitcode 1"
+=======================================
+Other Failures:
+  <NO_OTHER_FAILURES>
+***************************************
+
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0
+Traceback (most recent call last):
+  File "./tools/test.py", line 19, in <module>
+    from projects.mmdet3d_plugin.uniad.apis.test import custom_multi_gpu_test
+  File "/nethome/hyou37/xluo/UniAD/projects/mmdet3d_plugin/uniad/apis/test.py", line 54, in <m
+odule>
+    def gpu_profile_one_batch(model, data_loader, index, step=5, worker_num=1):
+TypeError: 'task_counter' object is not callable
+/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:1
+78: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torch.distributed.run.
+Note that --use_env is set by default in torch.distributed.run.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See
+https://pytorch.org/docs/stable/distributed.html#launch-utility for
+further instructions
+
+  warnings.warn(
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 3
+46942) of binary: /nethome/hyou37/anaconda3/envs/uniad/bin/python
+Traceback (most recent call last):
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 194, in _run_module
+_as_main
+    return _run_code(code, main_globals, None,
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 193, in <module>
+    main()
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 189, in main
+    launch(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 174, in launch
+    run(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/run
+.py", line 689, in run
+    elastic_launch(
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 116, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 244, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+***************************************
+         ./tools/test.py FAILED
+=======================================
+Root Cause:
+[0]:
+  time: 2023-06-08_05:16:11
+  rank: 0 (local_rank: 0)
+  exitcode: 1 (pid: 346942)
+  error_file: <N/A>
+  msg: "Process failed with exitcode 1"
+=======================================
+Other Failures:
+  <NO_OTHER_FAILURES>
+***************************************
+
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0
+Traceback (most recent call last):
+  File "./tools/test.py", line 19, in <module>
+    from projects.mmdet3d_plugin.uniad.apis.test import custom_multi_gpu_test
+  File "/nethome/hyou37/xluo/UniAD/projects/mmdet3d_plugin/uniad/apis/test.py", line 54, in <m
+odule>
+    def gpu_profile_one_batch(model, data_loader, index, step=5, worker_num=1):
+TypeError: 'task_counter' object is not callable
+/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:1
+78: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torch.distributed.run.
+Note that --use_env is set by default in torch.distributed.run.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See
+https://pytorch.org/docs/stable/distributed.html#launch-utility for
+further instructions
+
+  warnings.warn(
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 3
+47090) of binary: /nethome/hyou37/anaconda3/envs/uniad/bin/python
+Traceback (most recent call last):
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 194, in _run_module
+_as_main
+    return _run_code(code, main_globals, None,
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 193, in <module>
+    main()
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 189, in main
+    launch(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 174, in launch
+    run(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/run
+.py", line 689, in run
+    elastic_launch(
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 116, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 244, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+***************************************
+         ./tools/test.py FAILED
+=======================================
+Root Cause:
+[0]:
+  time: 2023-06-08_05:16:45
+  rank: 0 (local_rank: 0)
+  exitcode: 1 (pid: 347090)
+  error_file: <N/A>
+  msg: "Process failed with exitcode 1"
+=======================================
+Other Failures:
+  <NO_OTHER_FAILURES>
+***************************************
+
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0
+  File "./tools/test.py", line 269
+    with task_counter(task_name='UniAD Profiling')
+                                                 ^
+SyntaxError: invalid syntax
+/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/launch.py:1
+78: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torch.distributed.run.
+Note that --use_env is set by default in torch.distributed.run.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See
+https://pytorch.org/docs/stable/distributed.html#launch-utility for
+further instructions
+
+  warnings.warn(
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 3
+47307) of binary: /nethome/hyou37/anaconda3/envs/uniad/bin/python
+Traceback (most recent call last):
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 194, in _run_module
+_as_main
+    return _run_code(code, main_globals, None,
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 193, in <module>
+    main()
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 189, in main
+    launch(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+nch.py", line 174, in launch
+    run(args)
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/run
+.py", line 689, in run
+    elastic_launch(
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 116, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/nethome/hyou37/anaconda3/envs/uniad/lib/python3.8/site-packages/torch/distributed/lau
+ncher/api.py", line 244, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+***************************************
+         ./tools/test.py FAILED
+=======================================
+Root Cause:
+[0]:
+  time: 2023-06-08_05:18:19
+  rank: 0 (local_rank: 0)
+  exitcode: 1 (pid: 347307)
+  error_file: <N/A>
+  msg: "Process failed with exitcode 1"
+=======================================
+Other Failures:
+  <NO_OTHER_FAILURES>
+***************************************
+
+(uniad) hyou37@eic-gt-gpu1:~/xluo/UniAD$ ./tools/uniad_dist_eval.sh ./projects/configs/stage2_
+e2e/base_e2e.py ./ckpts/uniad_base_e2e.pth  1 0
+Start Task Email Counter
+projects.mmdet3d_plugin
+======
+Loading NuScenes tables for version v1.0-trainval...
+23 category,
+8 attribute,
+4 visibility,
+64386 instance,
+12 sensor,
+10200 calibrated_sensor,
+2631083 ego_pose,
+68 log,
+850 scene,
+34149 sample,
+2631083 sample_data,
+1166187 sample_annotation,
+4 map,
+Done loading in 36.293 seconds.
+======
+Reverse indexing ...
+Done reverse indexing in 8.3 seconds.
+======
+load checkpoint from local path: ./ckpts/uniad_base_e2e.pth
+2023-06-08 05:19:22,866 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.0.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,870 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.1.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,874 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.2.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,878 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.3.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,881 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.4.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,885 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.5.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,889 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.6.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,892 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.7.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,896 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.8.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,899 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.9.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,903 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.10.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,907 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.11.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,910 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.12.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,914 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.13.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,917 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.14.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,921 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.15.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,925 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.16.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,928 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.17.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,932 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.18.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,936 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.19.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,939 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.20.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,943 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.21.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,946 - root - INFO - ModulatedDeformConvPack img_backbone.layer3.22.conv2 i
+s upgraded to version 2.
+2023-06-08 05:19:22,950 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.0.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,955 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.1.conv2 is
+ upgraded to version 2.
+2023-06-08 05:19:22,959 - root - INFO - ModulatedDeformConvPack img_backbone.layer4.2.conv2 is
+ upgraded to version 2.
+[                                                  ] 0/5, elapsed: 0s, ETA:
+
+from 0 to 5 in rank 0, batch0
+
+
+[>>>>>>>>>>>>>>>>>>>>>>>>>>>       ] 4/5, 0.4 task/s, elapsed: 11s, ETA:     3s[W CPUAllocator
+.cpp:314] Memory block of unknown size was allocated before the profiling started, profiler re
+sults will not include the deallocation event
+[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 5/5, 0.4 task/s, elapsed: 12s, ETA:     0s

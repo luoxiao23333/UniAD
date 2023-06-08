@@ -265,4 +265,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    from email_task_result import task_counter
+    with task_counter(task_name='UniAD Profiling'):
+        main()

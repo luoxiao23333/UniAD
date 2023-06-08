@@ -24,6 +24,7 @@ import csv
 import logging
 import itertools
 
+
 def custom_encode_mask_results(mask_results):
     """Encode bitmap mask to RLE code. Semantic Masks only
     Args:
@@ -41,12 +42,12 @@ def custom_encode_mask_results(mask_results):
             mask_util.encode(
                 np.array(
                     cls_segms[i][:, :, np.newaxis], order='F',
-                        dtype='uint8'))[0])  # encoded with RLE
+                    dtype='uint8'))[0])  # encoded with RLE
     return [encoded_mask_results]
 
 
 @torch.no_grad()
-def gpu_profile_one_batch(model, data_loader, index, step=20, worker_num=1):
+def gpu_profile_one_batch(model, data_loader, index, step=5, worker_num=1):
     start_index = index * step
 
     dataset = data_loader.dataset
@@ -54,8 +55,7 @@ def gpu_profile_one_batch(model, data_loader, index, step=20, worker_num=1):
     if rank == 0:
         prog_bar = mmcv.ProgressBar(step * worker_num)
 
-
-    #for i, data in enumerate(data_loader):
+    # for i, data in enumerate(data_loader):
     #    inputs = data
     #    for i in range(len((inputs['img_metas']))):
     #        inputs['img_metas'][i] = inputs['img_metas'][i].data
@@ -68,7 +68,7 @@ def gpu_profile_one_batch(model, data_loader, index, step=20, worker_num=1):
     # tfb_writer = SummaryWriter(profile_path)
     # tfb_writer.add_graph(model, inputs)
     warmup_iters = 2
-    wait_iters = 17
+    wait_iters = 2
     batch_num = len(data_loader)
     num_iters = step - wait_iters - warmup_iters
 
@@ -84,8 +84,9 @@ def gpu_profile_one_batch(model, data_loader, index, step=20, worker_num=1):
             on_trace_ready=torch.profiler.tensorboard_trace_handler(profile_path),
             with_stack=False,
             # with_stack=True incurs an additional overhead, and is better suited for investigating code. Remember to remove it if you are benchmarking performance.
-            profile_memory=False,
-            with_flops=True
+            profile_memory=True,
+            with_flops=True,
+            record_shapes=True
     ) as profiler:
         end_index = start_index + step
         if end_index > len(data_loader):
@@ -104,7 +105,7 @@ def gpu_profile_one_batch(model, data_loader, index, step=20, worker_num=1):
             profiler.step()
 
         print("\n\nrank {0} batch {1} done!\n\n".format(rank, index))
-                    
+
         key_averages_by_cuda_time = profiler.key_averages().table(sort_by="self_cuda_time_total", row_limit=-1)
         # save to the log
         logging.info(key_averages_by_cuda_time)
@@ -114,13 +115,14 @@ def gpu_profile_one_batch(model, data_loader, index, step=20, worker_num=1):
         else:
             time_per_image = float(time_per_image)
         imgs_per_sec = batch_size * num_iters / time_per_image
-        memory = torch.cuda.max_memory_allocated() / 1024*1024
+        memory = torch.cuda.max_memory_allocated() / (1024 * 1024)
 
         def print_and_log(info):
             print(info)
             logging.info(info)
 
-        print_and_log(f"(batch_size: {batch_size}): {imgs_per_sec:.2f} FPS, max mem: {memory:.2f} MB, batch: {index}, rank: {rank}")
+        print_and_log(
+            f"(batch_size: {batch_size}): {imgs_per_sec:.2f} FPS, max mem: {memory:.2f} MB, batch: {index}, rank: {rank}")
 
         with open("{0}_key_averages.txt".format(profile_path), 'w') as file:
             table = profiler.key_averages().table(sort_by="self_cpu_time_total")
@@ -128,6 +130,46 @@ def gpu_profile_one_batch(model, data_loader, index, step=20, worker_num=1):
 
     return end_index == len(data_loader)
 
+
+# @torch.no_grad()
+# def gpu_profile_one_batch_without_profiler(model, data_loader, index, step=5, worker_num=1
+#                                            , profiler=None):
+#     start_index = index * step
+
+#     rank, world_size = get_dist_info()
+#     if rank == 0:
+#         prog_bar = mmcv.ProgressBar(step * worker_num)
+
+#     profile_path = os.path.join("benchmark_logs/{0}_rank{1}_batch_{2}".format("UniAD", rank, index))
+
+#     warmup_iters = 2
+#     wait_iters = 2
+#     num_iters = step - wait_iters - warmup_iters
+#     batch_size = "Not Run Any Dataset"
+
+#     print("Enable Memory Profiling, Need to Wait for a Long Time")
+
+#     end_index = start_index + step
+#     if end_index > len(data_loader):
+#         end_index = len(data_loader)
+#     print("\n\nfrom {0} to {1} in rank {2}, batch{3}\n\n"
+#           .format(start_index, end_index, rank, index))
+#     for i, data in enumerate(itertools.islice(data_loader, index, end_index)):
+#         result = model(return_loss=False, rescale=True, **data)
+#         batch_size = len(result)
+#         # bug from UniAD: 这样progress bar会不对，因为dataset不一定能被batchsize整除
+#         if rank == 0:
+#             for _ in range(batch_size * world_size):
+#                 prog_bar.update()
+
+#         torch.cuda.synchronize()
+#         profiler.step()
+
+#         print("\n\nrank {0} batch {1} done!\n\n".format(rank, index))
+
+#     print("\n\nrank {0} batch {1} done!\n\n".format(rank, index))
+
+#     return end_index == len(data_loader)
 
 
 @torch.no_grad()
@@ -161,11 +203,11 @@ def custom_multi_gpu_test(model, data_loader, tmpdir=None, gpu_collect=False):
 
     # Occ eval init
     eval_occ = hasattr(model.module, 'with_occ_head') \
-                and model.module.with_occ_head
+               and model.module.with_occ_head
     if eval_occ:
         # 30mx30m, 100mx100m at 50cm resolution
         EVALUATION_RANGES = {'30x30': (70, 130),
-                            '100x100': (0, 200)}
+                             '100x100': (0, 200)}
         n_classes = 2
         iou_metrics = {}
         for key in EVALUATION_RANGES.keys():
@@ -173,13 +215,13 @@ def custom_multi_gpu_test(model, data_loader, tmpdir=None, gpu_collect=False):
         panoptic_metrics = {}
         for key in EVALUATION_RANGES.keys():
             panoptic_metrics[key] = PanopticMetric(n_classes=n_classes, temporally_consistent=True).cuda()
-    
+
     # Plan eval init
-    eval_planning =  hasattr(model.module, 'with_planning_head') \
-                      and model.module.with_planning_head
+    eval_planning = hasattr(model.module, 'with_planning_head') \
+                    and model.module.with_planning_head
     if eval_planning:
         planning_metrics = PlanningMetric().cuda()
-        
+
     bbox_results = []
     mask_results = []
     dataset = data_loader.dataset
@@ -189,7 +231,7 @@ def custom_multi_gpu_test(model, data_loader, tmpdir=None, gpu_collect=False):
     time.sleep(2)  # This line can prevent deadlock problem in some cases.
     have_mask = False
     num_occ = 0
-    
+
     for i, data in enumerate(data_loader):
         with torch.no_grad():
             result = model(return_loss=False, rescale=True, **data)
@@ -204,7 +246,8 @@ def custom_multi_gpu_test(model, data_loader, tmpdir=None, gpu_collect=False):
                 result[0]['planning_traj'] = result[0]['planning']['result_planning']['sdc_traj']
                 result[0]['planning_traj_gt'] = result[0]['planning']['planning_gt']['sdc_planning']
                 result[0]['command'] = result[0]['planning']['planning_gt']['command']
-                planning_metrics(pred_sdc_traj[:, :6, :2], sdc_planning[0][0,:, :6, :2], sdc_planning_mask[0][0,:, :6, :2], segmentation[0][:, [1,2,3,4,5,6]])
+                planning_metrics(pred_sdc_traj[:, :6, :2], sdc_planning[0][0, :, :6, :2],
+                                 sdc_planning_mask[0][0, :, :6, :2], segmentation[0][:, [1, 2, 3, 4, 5, 6]])
 
             # Eval Occ
             if eval_occ:
@@ -215,9 +258,10 @@ def custom_multi_gpu_test(model, data_loader, tmpdir=None, gpu_collect=False):
                     for key, grid in EVALUATION_RANGES.items():
                         limits = slice(grid[0], grid[1])
                         iou_metrics[key](result[0]['occ']['seg_out'][..., limits, limits].contiguous(),
-                                        result[0]['occ']['seg_gt'][..., limits, limits].contiguous())
-                        panoptic_metrics[key](result[0]['occ']['ins_seg_out'][..., limits, limits].contiguous().detach(),
-                                                result[0]['occ']['ins_seg_gt'][..., limits, limits].contiguous())
+                                         result[0]['occ']['seg_gt'][..., limits, limits].contiguous())
+                        panoptic_metrics[key](
+                            result[0]['occ']['ins_seg_out'][..., limits, limits].contiguous().detach(),
+                            result[0]['occ']['ins_seg_gt'][..., limits, limits].contiguous())
 
             # Pop out unnecessary occ results, avoid appending it to cpu when collect_results_cpu
             if os.environ.get('ENABLE_PLOT_MODE', None) is None:
@@ -227,7 +271,8 @@ def custom_multi_gpu_test(model, data_loader, tmpdir=None, gpu_collect=False):
                 for k in ['seg_gt', 'ins_seg_gt', 'pred_ins_sigmoid', 'seg_out', 'ins_seg_out']:
                     if k in result[0]['occ']:
                         result[0]['occ'][k] = result[0]['occ'][k].detach().cpu()
-                for k in ['bbox', 'segm', 'labels', 'panoptic', 'drivable', 'score_list', 'lane', 'lane_score', 'stuff_score_list']:
+                for k in ['bbox', 'segm', 'labels', 'panoptic', 'drivable', 'score_list', 'lane', 'lane_score',
+                          'stuff_score_list']:
                     if k in result[0]['pts_bbox'] and isinstance(result[0]['pts_bbox'][k], torch.Tensor):
                         result[0]['pts_bbox'][k] = result[0]['pts_bbox'][k].detach().cpu()
 
@@ -258,7 +303,7 @@ def custom_multi_gpu_test(model, data_loader, tmpdir=None, gpu_collect=False):
             mask_results = None
     else:
         bbox_results = collect_results_cpu(bbox_results, len(dataset), tmpdir)
-        tmpdir = tmpdir+'_mask' if tmpdir is not None else None
+        tmpdir = tmpdir + '_mask' if tmpdir is not None else None
         if have_mask:
             mask_results = collect_results_cpu(mask_results, len(dataset), tmpdir)
         else:
@@ -299,7 +344,7 @@ def collect_results_cpu(result_part, size, tmpdir=None):
     if tmpdir is None:
         MAX_LEN = 512
         # 32 is whitespace
-        dir_tensor = torch.full((MAX_LEN, ),
+        dir_tensor = torch.full((MAX_LEN,),
                                 32,
                                 dtype=torch.uint8,
                                 device='cuda')
@@ -330,8 +375,8 @@ def collect_results_cpu(result_part, size, tmpdir=None):
         '''
         bacause we change the sample of the evaluation stage to make sure that each gpu will handle continuous sample,
         '''
-        #for res in zip(*part_list):
-        for res in part_list:  
+        # for res in zip(*part_list):
+        for res in part_list:
             ordered_results.extend(list(res))
         # the dataloader may pad some samples
         ordered_results = ordered_results[:size]
