@@ -1,6 +1,5 @@
 import argparse
 import cv2
-import torch
 import sklearn
 import mmcv
 import os
@@ -9,7 +8,7 @@ from mmcv import Config, DictAction
 from mmcv.cnn import fuse_conv_bn
 from mmcv.parallel import MMDataParallel, MMDistributedDataParallel
 from mmcv.runner import (get_dist_info, init_dist, load_checkpoint,
-                         wrap_fp16_model)
+                        wrap_fp16_model)
 
 from mmdet3d.apis import single_gpu_test
 from mmdet3d.datasets import build_dataset
@@ -21,8 +20,10 @@ from projects.mmdet3d_plugin.uniad.apis.test import custom_multi_gpu_profile_tes
 from mmdet.datasets import replace_ImageToTensor
 import time
 import os.path as osp
-
+from email_task_result import task_counter
+import torch
 warnings.filterwarnings("ignore")
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -30,6 +31,7 @@ def parse_args():
     parser.add_argument('config', help='test config file path')
     parser.add_argument('checkpoint', help='checkpoint file')
     parser.add_argument("batchindex", help="the index of batch")
+    parser.add_argument("function_mode", help=R"the mode of function: {profiling, metrics}")
     parser.add_argument('--out', default='output/results.pkl', help='output result file in pickle format')
     parser.add_argument(
         '--fuse-conv-bn',
@@ -108,8 +110,9 @@ def parse_args():
 
 
 def main():
-    os.environ["CUDA_VISIBLE_DEVICES"] = "7"
     args = parse_args()
+
+    print("Enable function mode ", args.function_mode)
 
     assert args.out or args.eval or args.format_only or args.show \
         or args.show_dir, \
@@ -191,6 +194,7 @@ def main():
 
     # build the dataloader
     dataset = build_dataset(cfg.data.test)
+    
     data_loader = build_dataloader(
         dataset,
         samples_per_gpu=samples_per_gpu,
@@ -222,49 +226,57 @@ def main():
         # segmentation dataset has `PALETTE` attribute
         model.PALETTE = dataset.PALETTE
 
-    if not distributed:
-        assert False
-        # model = MMDataParallel(model, device_ids=[0])
-        # outputs = single_gpu_test(model, data_loader, args.show, args.show_dir)
-    else:
-        model = MMDistributedDataParallel(
-            model.cuda(),
-            device_ids=[torch.cuda.current_device()],
-            broadcast_buffers=False)
-        #outputs = custom_multi_gpu_test(model, data_loader, args.tmpdir,
-        #                                args.gpu_collect)
-        outputs = custom_multi_gpu_profile_test(model, data_loader, int(args.batchindex))
-        if outputs == "Profile":
-            print("Profile Done")
-            return
-
+    # see email_task_result.py if you want to use the email function
     rank, _ = get_dist_info()
-    if rank == 0:
-        if args.out:
-            print(f'\nwriting results to {args.out}')
-            #assert False
-            mmcv.dump(outputs, args.out)
-            #outputs = mmcv.load(args.out)
-        kwargs = {} if args.eval_options is None else args.eval_options
-        kwargs['jsonfile_prefix'] = osp.join('test', args.config.split(
-            '/')[-1].split('.')[-2], time.ctime().replace(' ', '_').replace(':', '_'))
-        if args.format_only:
-            dataset.format_results(outputs, **kwargs)
+    with task_counter(task_name='UniAD', enabled=(rank == 0 and True)) as tc:
 
-        if args.eval:
-            eval_kwargs = cfg.get('evaluation', {}).copy()
-            # hard-code way to remove EvalHook args
-            for key in [
-                    'interval', 'tmpdir', 'start', 'gpu_collect', 'save_best',
-                    'rule'
-            ]:
-                eval_kwargs.pop(key, None)
-            eval_kwargs.update(dict(metric=args.eval, **kwargs))
+        if not distributed:
+            assert False
+            # model = MMDataParallel(model, device_ids=[0])
+            # outputs = single_gpu_test(model, data_loader, args.show, args.show_dir)
+        else:
+            model = MMDistributedDataParallel(
+                model.cuda(),
+                device_ids=[torch.cuda.current_device()],
+                broadcast_buffers=False)
+            if args.function_mode == 'metrics':
+                outputs = custom_multi_gpu_test(model, data_loader, args.tmpdir,
+                                                args.gpu_collect)
+            elif args.function_mode == 'profiling':
+                custom_multi_gpu_profile_test(model, data_loader, int(args.batchindex))
+            else:
+                assert False, 'Unsuporrted function mode, only support {}, but get {}'.format(
+                    R'{profiling, metrics}', args.function_mode
+                )
 
-            print(dataset.evaluate(outputs, **eval_kwargs))
+        rank, _ = get_dist_info()
+        if rank == 0:
+            if args.out and args.function_mode == 'metrics':
+                print(f'\nwriting results to {args.out}')
+                #assert False
+                mmcv.dump(outputs, args.out)
+                #outputs = mmcv.load(args.out)
+            kwargs = {} if args.eval_options is None else args.eval_options
+            kwargs['jsonfile_prefix'] = osp.join('test', args.config.split(
+                '/')[-1].split('.')[-2], time.ctime().replace(' ', '_').replace(':', '_'))
+            if args.format_only and args.function_mode == 'metrics':
+                dataset.format_results(outputs, **kwargs)
+
+            if args.eval and args.function_mode == 'metrics':
+                eval_kwargs = cfg.get('evaluation', {}).copy()
+                # hard-code way to remove EvalHook args
+                for key in [
+                        'interval', 'tmpdir', 'start', 'gpu_collect', 'save_best',
+                        'rule'
+                ]:
+                    eval_kwargs.pop(key, None)
+                eval_kwargs.update(dict(metric=args.eval, **kwargs))
+
+                print("Start Evaluating Metrics")
+                evaluate_metrics = dataset.evaluate(outputs, **eval_kwargs)
+                tc.add_msg(evaluate_metrics)
+                print(evaluate_metrics)
 
 
 if __name__ == '__main__':
-    from email_task_result import task_counter
-    with task_counter(task_name='UniAD Profiling'):
-        main()
+    main()

@@ -47,7 +47,7 @@ def custom_encode_mask_results(mask_results):
 
 
 @torch.no_grad()
-def gpu_profile_one_batch(model, data_loader, index, step=5, worker_num=1):
+def gpu_profile_one_batch(model, data_loader, index, tmpdir=None, gpu_collect=False, step=5, worker_num=1):
     start_index = index * step
 
     dataset = data_loader.dataset
@@ -55,13 +55,38 @@ def gpu_profile_one_batch(model, data_loader, index, step=5, worker_num=1):
     if rank == 0:
         prog_bar = mmcv.ProgressBar(step * worker_num)
 
-    # for i, data in enumerate(data_loader):
-    #    inputs = data
-    #    for i in range(len((inputs['img_metas']))):
-    #        inputs['img_metas'][i] = inputs['img_metas'][i].data
-    #    for i in range(len((inputs['img']))):
-    #        inputs['img'][i] = inputs['img'][i].data
-    #    break
+    # Begin Evaluation Init
+    # Occ eval init
+    eval_occ = hasattr(model.module, 'with_occ_head') \
+               and model.module.with_occ_head
+    if eval_occ:
+        # 30mx30m, 100mx100m at 50cm resolution
+        EVALUATION_RANGES = {'30x30': (70, 130),
+                             '100x100': (0, 200)}
+        n_classes = 2
+        iou_metrics = {}
+        for key in EVALUATION_RANGES.keys():
+            iou_metrics[key] = IntersectionOverUnion(n_classes).cuda()
+        panoptic_metrics = {}
+        for key in EVALUATION_RANGES.keys():
+            panoptic_metrics[key] = PanopticMetric(n_classes=n_classes, temporally_consistent=True).cuda()
+
+    # Plan eval init
+    eval_planning = hasattr(model.module, 'with_planning_head') \
+                    and model.module.with_planning_head
+    if eval_planning:
+        planning_metrics = PlanningMetric().cuda()
+
+    bbox_results = []
+    mask_results = []
+    dataset = data_loader.dataset
+    rank, world_size = get_dist_info()
+    if rank == 0:
+        prog_bar = mmcv.ProgressBar(len(dataset))
+    time.sleep(2)  # This line can prevent deadlock problem in some cases.
+    have_mask = False
+    num_occ = 0
+    # End Evaluation Init
 
     profile_path = os.path.join("benchmark_logs/{0}_rank{1}_batch_{2}".format("UniAD", rank, index))
 
@@ -84,7 +109,7 @@ def gpu_profile_one_batch(model, data_loader, index, step=5, worker_num=1):
             on_trace_ready=torch.profiler.tensorboard_trace_handler(profile_path),
             with_stack=False,
             # with_stack=True incurs an additional overhead, and is better suited for investigating code. Remember to remove it if you are benchmarking performance.
-            profile_memory=True,
+            profile_memory=False,
             with_flops=True,
             record_shapes=True
     ) as profiler:
@@ -116,13 +141,15 @@ def gpu_profile_one_batch(model, data_loader, index, step=5, worker_num=1):
             time_per_image = float(time_per_image)
         imgs_per_sec = batch_size * num_iters / time_per_image
         memory = torch.cuda.max_memory_allocated() / (1024 * 1024)
+        reserved = torch.cuda.max_memory_reserved() / (1024 * 1024)
+        cached = torch.cuda.max_memory_cached() / (1024 * 1024)
 
         def print_and_log(info):
             print(info)
             logging.info(info)
 
         print_and_log(
-            f"(batch_size: {batch_size}): {imgs_per_sec:.2f} FPS, max mem: {memory:.2f} MB, batch: {index}, rank: {rank}")
+            f"(batch_size: {batch_size}): {imgs_per_sec:.2f} FPS, max mem allocated: {memory:.2f} MB, max reserved mem: {reserved:.2f} MB, max cached mem: {cached:.2f} MB, batch: {index}, rank: {rank}")
 
         with open("{0}_key_averages.txt".format(profile_path), 'w') as file:
             table = profiler.key_averages().table(sort_by="self_cpu_time_total")
@@ -131,56 +158,13 @@ def gpu_profile_one_batch(model, data_loader, index, step=5, worker_num=1):
     return end_index == len(data_loader)
 
 
-# @torch.no_grad()
-# def gpu_profile_one_batch_without_profiler(model, data_loader, index, step=5, worker_num=1
-#                                            , profiler=None):
-#     start_index = index * step
-
-#     rank, world_size = get_dist_info()
-#     if rank == 0:
-#         prog_bar = mmcv.ProgressBar(step * worker_num)
-
-#     profile_path = os.path.join("benchmark_logs/{0}_rank{1}_batch_{2}".format("UniAD", rank, index))
-
-#     warmup_iters = 2
-#     wait_iters = 2
-#     num_iters = step - wait_iters - warmup_iters
-#     batch_size = "Not Run Any Dataset"
-
-#     print("Enable Memory Profiling, Need to Wait for a Long Time")
-
-#     end_index = start_index + step
-#     if end_index > len(data_loader):
-#         end_index = len(data_loader)
-#     print("\n\nfrom {0} to {1} in rank {2}, batch{3}\n\n"
-#           .format(start_index, end_index, rank, index))
-#     for i, data in enumerate(itertools.islice(data_loader, index, end_index)):
-#         result = model(return_loss=False, rescale=True, **data)
-#         batch_size = len(result)
-#         # bug from UniAD: 这样progress bar会不对，因为dataset不一定能被batchsize整除
-#         if rank == 0:
-#             for _ in range(batch_size * world_size):
-#                 prog_bar.update()
-
-#         torch.cuda.synchronize()
-#         profiler.step()
-
-#         print("\n\nrank {0} batch {1} done!\n\n".format(rank, index))
-
-#     print("\n\nrank {0} batch {1} done!\n\n".format(rank, index))
-
-#     return end_index == len(data_loader)
-
-
 @torch.no_grad()
-def custom_multi_gpu_profile_test(model, data_loader, index):
+def custom_multi_gpu_profile_test(model, data_loader, index, tmpdir=None, gpu_collect=False):
     model.eval()
 
     time.sleep(2)  # This line can prevent deadlock problem in some cases.
 
-    gpu_profile_one_batch(model, data_loader, index)
-
-    return "Profile"
+    gpu_profile_one_batch(model, data_loader, index, tmpdir=None, gpu_collect=False)
 
 
 def custom_multi_gpu_test(model, data_loader, tmpdir=None, gpu_collect=False):
