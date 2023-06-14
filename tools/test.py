@@ -228,7 +228,7 @@ def main():
 
     # see email_task_result.py if you want to use the email function
     rank, _ = get_dist_info()
-    with task_counter(task_name='UniAD', enabled=(rank == 0 and True)) as tc:
+    with task_counter(task_name='UniAD', enabled=(rank == 0 and False)) as tc:
 
         if not distributed:
             assert False
